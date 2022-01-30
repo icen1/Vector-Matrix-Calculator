@@ -31,3 +31,11 @@ vectorDistance (ThreeD x y z) (ThreeD a b c) = sqrt((x-a)^2+(y-b)^2+(z-c)^2)
 vectorDistance (TwoD x y) (ThreeD a b c) =  error "Can't be different dimensions"
 vectorDistance (ThreeD x y z) (TwoD a b) = error "Can't be different dimensions"
 
+-- An Operation to get the dot product between two vectors
+vectorDotProduct:: Vector -> Vector -> Float 
+vectorDotProduct (TwoD x y) (TwoD a b) = (x*a)+(y*b)
+vectorDotProduct (ThreeD x y z) (ThreeD a b c) = (x*a)+(y*b)+(z*c)
+vectorDotProduct (TwoD x y) (ThreeD a b c) =  error "Can't be different dimensions"
+vectorDotProduct (ThreeD x y z) (TwoD a b) = error "Can't be different dimensions"
+ 
+
