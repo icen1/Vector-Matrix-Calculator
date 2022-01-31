@@ -42,6 +42,3 @@ vectorDotProduct (ThreeD x y z) (TwoD a b) = error "Can't be different dimension
 vectorRotation:: Double -> Vector -> Vector
 vectorRotation a (TwoD x y) = TwoD (x*cos a - y*sin a) (x*sin a + y*cos a)
 vectorRotation a (ThreeD x y z) = error "Will use matrices for that later"
-
-
-
