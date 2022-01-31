@@ -38,7 +38,7 @@ vectorDotProduct (ThreeD x y z) (ThreeD a b c) = (x*a)+(y*b)+(z*c)
 vectorDotProduct (TwoD x y) (ThreeD a b c) =  error "Can't be different dimensions"
 vectorDotProduct (ThreeD x y z) (TwoD a b) = error "Can't be different dimensions"
 
--- An operartion to rotate the vector
+-- An operartion to rotate the vector. Hi Tudor
 vectorRotation:: Double -> Vector -> Vector
 vectorRotation a (TwoD x y) = TwoD (x*cos a - y*sin a) (x*sin a + y*cos a)
 vectorRotation a (ThreeD x y z) = error "Will use matrices for that later"
