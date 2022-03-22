@@ -1,11 +1,15 @@
 module VectorOperations where
 
+import Data.Char (toUpper, Char, isAlpha)
+import Data.Function ( on )
+
 data Vector a
     =  TwoD a a
     |  ThreeD a a a
     deriving Show
 
--- An operation to handle the addition of vectors to each other. Tried using Maybe/Nothing/Just instead of error but couldn't. Research later.
+{- An operation to handle the addition of vectors to each other. Tried using 
+ Maybe/Nothing/Just instead of error but couldn't. Research later. -}
 vectorAddition :: Real a => Vector a -> Vector a -> Maybe (Vector a)
 vectorAddition (TwoD x y) (TwoD a b) = Just(TwoD (x+a) (y+b))
 vectorAddition (ThreeD x y z) (ThreeD a b c) = Just(ThreeD (x+a) (y+b) (z+c))
