@@ -1,5 +1,14 @@
+{-
+    Haskell program that perform operations on vectors.
+    @author Icen
+    NOTE: The operations Multplications and rotation are not working probably as
+    they need a different parser format. I commented them out so please avoid
+    using them. Thank you!
+-}
+
 module VectorOperations where
 
+-----------------------------------IMPORTS--------------------------------------
 import System.Console.Haskeline
     ( defaultSettings, getInputLine, outputStrLn, runInputT, InputT )
 import Text.Parsec
@@ -37,15 +46,14 @@ main = runInputT defaultSettings loop
                Just "quit" -> pure ()
                Just input -> do let mainFunc = parserHelperCheck (parseErrorChecker $ parserHelper input)
                                     operation (Addition a b)      = vectorAddition a b
-                                    -- operation (Multiplication a b) = scalarMultiplication a b
-                                    -- operation (Length a) = vectorLength a
-                                    -- operation (Dot a b)     = vectorDotProduct a b
                                     -- operation (Rotation a b) = vectorRotation a b 
                                     operation _ = error "Something wrong happened"
                                 outputStrLn $ case mainFunc of
-                                    (Distance a b) ->  show $ vectorDistance a b
-                                    (Dot a b)      ->  show $ vectorDotProduct a b 
-                                    sElse          ->  show $ operation mainFunc
+                                    (Distance a b)       ->  show $ vectorDistance a b
+                                    (Dot a b)            ->  show $ vectorDotProduct a b 
+                                    (Length a)           ->  show $ vectorLength a
+                                    -- (Multiplication a b) ->  show $ scalarMultiplication a b
+                                    sElse                ->  show $ operation mainFunc
                                 loop
 
 --------------------------- DATA TYPES USED ------------------------------------
@@ -71,7 +79,7 @@ data Mode a
         | NotValid
         deriving (Show,Read)
 
----------------------CONSTANTS THAT WILL BE MATCHED AGANIST---------------------
+-----------------------CONSTANTS THAT WILL BE USED -----------------------------
 
 -- The operations that will be used and can be changed to the data type Mode
 operations :: [String]
@@ -182,7 +190,6 @@ vectorType [x,y,z] = ThreeD (read x) (read y) (read z)
 -----------------------------VECTOR OPERATIONS----------------------------------
 
 -- An operation to handle the addition of vectors to each other.
--- |
 vectorAddition :: Vector Double -> Vector Double -> Vector Double
 vectorAddition (TwoD x y) (TwoD a b) = TwoD (x+a) (y+b)
 vectorAddition (ThreeD x y z) (ThreeD a b c) = ThreeD (x+a) (y+b) (z+c)
@@ -218,3 +225,4 @@ vectorRotation:: Double -> Vector Double -> Vector Double
 vectorRotation a (TwoD x y) = TwoD (x*cos a - y*sin a) (x*sin a + y*cos a)
 vectorRotation a (ThreeD x y z) = error "Will use matrices for that later"
 
+----------------------------------EOF-------------------------------------------
