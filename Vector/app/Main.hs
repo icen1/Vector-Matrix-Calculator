@@ -1,6 +1,6 @@
 module Main where
 
-import Lib
+import qualified VectorOperations as V
 
 main :: IO ()
-main = main 
+main = V.main 
